@@ -1,5 +1,6 @@
 module Main (main) where
 
+import Control.Exception (throw)
 import Data.Text.IO (getContents)
 import Text.Megaparsec (Parsec, oneOf, parse, sepEndBy1)
 import Text.Megaparsec.Char (newline, space)
@@ -71,12 +72,14 @@ pTotalScore :: Parser Natural
 pTotalScore = sum <$> sepEndBy1 pRoundScore newline
 
 main :: IO ()
-main = getContents >>= runParser
+main =
+  getContents
+    >>= ( parse
+            pTotalScore
+            "<stdin>"
+            >>> liftEither
+        )
+    >>= print
   where
-    runParser =
-      parse
-        pTotalScore
-        "<stdin>"
-        >>> either
-          (error . show)
-          print
+    liftEither (Left err) = throw err
+    liftEither (Right x) = pure x
