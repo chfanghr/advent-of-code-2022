@@ -63,10 +63,13 @@ common shared
     ViewPatterns
 
   build-depends:
-    , base                >=4.13.0.0 && <=4.18.0.0
+    , base                  >=4.13.0.0 && <=4.18.0.0
     , megaparsec
+    , mtl
+    , optparse-applicative
     , parser-combinators
-    , relude              >=1.0
+    , profunctors
+    , relude                >=1.0
     , text
 
   hs-source-dirs:     src
@@ -75,15 +78,20 @@ common shared
 common exe-opts
   ghc-options: -threaded
 
-executable day1
-  import:  shared, exe-opts
-  main-is: Day1/Main.hs
-
-executable day2
-  import:  shared, exe-opts
-  main-is: Day2/Main.hs
-
-executable day3
+executable aoc2022
   import:        shared, exe-opts
-  main-is:       Day3/Main.hs
-  build-depends: profunctors
+  main-is:       Main.hs
+  build-depends: day1
+
+library day1
+  import:          shared, exe-opts
+  exposed-modules: Day1
+  build-depends:   utils
+
+library utils
+  import:          shared, exe-opts
+  exposed-modules:
+    Utils.Commands
+    Utils.Parsing
+
+  build-depends:
