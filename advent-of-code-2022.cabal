@@ -82,3 +82,8 @@ executable day1
 executable day2
   import:  shared, exe-opts
   main-is: Day2/Main.hs
+
+executable day3
+  import:        shared, exe-opts
+  main-is:       Day3/Main.hs
+  build-depends: profunctors
