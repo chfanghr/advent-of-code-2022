@@ -45,7 +45,7 @@ data Day1
 instance DayXCommand Day1 Parts Natural where
   pCustomOptions = pEnumParts "day 1"
 
-  lookupExample example = case example of
+  lookupExample = \case
     "default" -> pure "fixtures/day1/default.txt"
     _ -> throwError ExampleNotFound
 

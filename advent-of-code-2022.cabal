@@ -95,3 +95,21 @@ library utils
     Utils.Parsing
 
   build-depends:
+
+executable day2
+  import:        shared, exe-opts
+  main-is:       Day2/Main.hs
+  build-depends: containers
+
+executable day7
+  import:        shared, exe-opts
+  main-is:       Day7/Main.hs
+  build-depends: containers
+
+executable day10
+  import:        shared, exe-opts
+  main-is:       Day10/Main.hs
+  build-depends:
+    , containers
+    , extra
+    , safe
