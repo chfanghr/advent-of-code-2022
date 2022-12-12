@@ -76,7 +76,7 @@ common shared
   default-language:   Haskell2010
 
 common exe-opts
-  ghc-options: -threaded
+  ghc-options: -threaded -O3
 
 executable aoc2022
   import:        shared, exe-opts
@@ -113,3 +113,21 @@ executable day10
     , containers
     , extra
     , safe
+
+executable day11
+  import:           shared, exe-opts
+  main-is:          Day11/Main.hs
+  build-depends:
+    , array
+    , composition-prelude
+    , containers
+    , extra
+    , lens
+    , safe
+
+  other-extensions: DuplicateRecordFields
+  other-modules:
+    Day11.Business
+    Day11.Input
+    Day11.Monkey
+    Day11.Types
